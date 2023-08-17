@@ -18,13 +18,13 @@ export interface Country {
   translations: { [key: string]: Translation };
   latlng:       number[];
   landlocked:   boolean;
-  borders?:     string[];
+  borders:      string[];
   area:         number;
   demonyms:     Demonyms;
   flag:         string;
   maps:         Maps;
   population:   number;
-  gini?:        { [key: string]: number };
+  gini:         Gini;
   fifa:         string;
   car:          Car;
   timezones:    string[];
@@ -33,7 +33,6 @@ export interface Country {
   coatOfArms:   CoatOfArms;
   startOfWeek:  string;
   capitalInfo:  CapitalInfo;
-  postalCode?:  PostalCode;
 }
 
 export interface CapitalInfo {
@@ -46,20 +45,15 @@ export interface Car {
 }
 
 export interface CoatOfArms {
-  png?: string;
-  svg?: string;
+  png: string;
+  svg: string;
 }
 
 export interface Currencies {
-  CRC?: Clp;
-  YER?: Clp;
-  CLP?: Clp;
-  USD?: Clp;
-  EUR?: Clp;
-  DOP?: Clp;
+  COP: Cop;
 }
 
-export interface Clp {
+export interface Cop {
   name:   string;
   symbol: string;
 }
@@ -75,9 +69,13 @@ export interface Eng {
 }
 
 export interface Flags {
-  png:  string;
-  svg:  string;
-  alt?: string;
+  png: string;
+  svg: string;
+  alt: string;
+}
+
+export interface Gini {
+  "2019": number;
 }
 
 export interface Idd {
@@ -86,10 +84,7 @@ export interface Idd {
 }
 
 export interface Languages {
-  spa?: string;
-  ara?: string;
-  eng?: string;
-  ita?: string;
+  spa: string;
 }
 
 export interface Maps {
@@ -104,18 +99,10 @@ export interface Name {
 }
 
 export interface NativeName {
-  spa?: Translation;
-  ara?: Translation;
-  eng?: Translation;
-  ita?: Translation;
+  spa: Translation;
 }
 
 export interface Translation {
   official: string;
   common:   string;
-}
-
-export interface PostalCode {
-  format: string;
-  regex:  string;
 }
