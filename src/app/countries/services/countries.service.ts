@@ -10,10 +10,14 @@ export class CountriesService {
 
   constructor(private http: HttpClient) {}
 
-  searchCountryByAlphaCode( code: string ): Observable<Country[]> {
+  searchCountryByAlphaCode( code: string ): Observable<Country | null> {
     const url = `${this.apiUrl}/alpha/${code}`;
 
-    return this.http.get<Country[]>(url).pipe(catchError(() => of([])));
+    return this.http.get<Country[]>(url)
+    .pipe(
+      map( countries => countries.length > 0 ? countries[0] : null ),
+      catchError(() => of( null ))
+    );
   }
 
   searchCapital(term: string): Observable<Country[]> {
